@@ -30,16 +30,23 @@ public class SearchController {
     public String displaySearchResults(Model model, @RequestParam String searchType,
                                        @RequestParam String searchTerm){
         ArrayList<Job> jobs;
-        if(searchTerm.isEmpty() || searchTerm.equals("all")){
+
+        if(searchTerm.isEmpty() && searchType.equals("all")){
             jobs = JobData.findAll();
-            model.addAttribute("title", "All Jobs");
-        } else {
+        } else if(searchType.equals("all")) {
             jobs = JobData.findByValue(searchTerm);
-            model.addAttribute("title", "Jobs with " + searchTerm);
+        } else {
+            jobs = JobData.findByColumnAndValue(searchType, searchTerm);
         }
+
         model.addAttribute("jobs", jobs);
-        model.addAttribute("columns", columnChoices);
-        return "results";
+        model.addAttribute("columns", ListController.columnChoices);
+        model.addAttribute("employers", JobData.getAllEmployers());
+        model.addAttribute("locations", JobData.getAllLocations());
+        model.addAttribute("positions", JobData.getAllPositionTypes());
+        model.addAttribute("skills", JobData.getAllCoreCompetency());
+        model.addAttribute("title", "Jobs with " + searchType+ " : " + searchTerm);
+        return "search";
     }
 }
 
