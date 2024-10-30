@@ -19,9 +19,8 @@
   </tr>
   <tr>
     <!-- TODO #2: Complete the View Jobs By Category Table. -->
-
-    <td></td> <!-- Feel free to remove or modify this element if necessary. -->
-
+<!--Modified the ListController by adding model.Attribute("all, "View All")
+     to tableChoices HashMap-->
     <td th:each="category : ${tableChoices}">
       <ul>
         <li th:each="item : ${category.value}">
