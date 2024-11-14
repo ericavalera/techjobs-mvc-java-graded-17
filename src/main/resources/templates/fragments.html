@@ -28,29 +28,37 @@
 </div>
 <div th:fragment="job-table">
     <div class="container">
+        <!-- loops through each job in its own table, this information is passed from the
+            ListController, css class "job-listing" has been added-->
         <table th:each="job : ${jobs}" class="job-listing">
             <tr>
                 <td>ID</td>
+                <!--includes job ID in table-->
                 <td th:text="${job.id}"></td>
             </tr>
             <tr>
                 <td>Name</td>
+            <!--  includes job name in table.           -->
                 <td th:text="${job.name}"></td>
             </tr>
             <tr>
                 <td>Employer</td>
+                <!-- includes employer name of job-->
                 <td th:text="${job.employer}"></td>
             </tr>
             <tr>
                 <td>Location</td>
+                <!-- includes job location in table-->
                 <td th:text="${job.location}"></td>
             </tr>
             <tr>
                 <td>Position Type</td>
+            <!-- includes position type-->
                 <td th:text="${job.positionType}"></td>
             </tr>
             <tr>
                 <td>Skill</td>
+                <!-- includes skill/core competency-->
                 <td th:text="${job.coreCompetency}"></td>
             </tr>
         </table>
